@@ -1,0 +1,3830 @@
+{
+  "version": "2.3.0",
+  "summary": {
+    "title": "Lobster / OpenClaw Personal AI Agent",
+    "owner": "John F. Holliday \u2014 Holliday & Associates",
+    "description": "STRIDE threat model of the Lobster personal AI agent system built on the OpenClaw framework. Six agents on a dedicated Mac handle iMessage, WhatsApp, email, calendar, HomeKit, and travel. Architecture documented at lobster.shahine.com.",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [
+      {
+        "name": "John F. Holliday"
+      },
+      {
+        "name": "Analysis assisted by Claude (Anthropic)"
+      },
+      {
+        "name": "Architecture by Omar Shahine"
+      }
+    ],
+    "diagrams": [
+      {
+        "id": 0,
+        "title": "Lobster OpenClaw DFD",
+        "diagramType": "STRIDE",
+        "placeholder": "Lobster / OpenClaw STRIDE Data Flow Diagram",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "version": "2.3.0",
+        "cells": [
+          {
+            "position": {
+              "x": 10,
+              "y": 10
+            },
+            "size": {
+              "width": 1150,
+              "height": 720
+            },
+            "attrs": {
+              "label": {
+                "text": "Internet Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "a6865275-33bb-4975-9169-a925824e11c4",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 200,
+              "y": 40
+            },
+            "size": {
+              "width": 940,
+              "height": 680
+            },
+            "attrs": {
+              "label": {
+                "text": "Tailscale Mesh"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "69ab661d-cf45-4abf-8495-74a1e36f48b6",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 340,
+              "y": 70
+            },
+            "size": {
+              "width": 780,
+              "height": 640
+            },
+            "attrs": {
+              "label": {
+                "text": "OpenClaw Gateway"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "84018ded-9901-42ce-9bc9-57652d3f835e",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 580,
+              "y": 160
+            },
+            "size": {
+              "width": 510,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "Restricted Agent Context"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "0919459d-0db0-498c-bff5-5d55d85e7c54",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 360,
+              "y": 440
+            },
+            "size": {
+              "width": 740,
+              "height": 270
+            },
+            "attrs": {
+              "label": {
+                "text": "Host OS / Exec Boundary"
+              }
+            },
+            "visible": true,
+            "shape": "trust-boundary-box",
+            "id": "9a04bda1-f5f9-45a9-b3ca-ca775e4a783f",
+            "zIndex": -1,
+            "data": {
+              "type": "tm.BoundaryBox",
+              "description": "",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 80
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Email Senders"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "d6319d3f-8e07-4f27-baf8-05a77129194b",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "38a1585c-dba6-4a56-a16f-5db20853283d"
+                },
+                {
+                  "group": "right",
+                  "id": "9863f6d8-2fc0-4c70-9c2f-9c1317ae51d9"
+                },
+                {
+                  "group": "bottom",
+                  "id": "eb8f9f5b-2484-4022-860e-13807b770e5c"
+                },
+                {
+                  "group": "left",
+                  "id": "f37e5c16-3bb4-46f1-961f-d1f0d79a9b6e"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Email Senders",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 180
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "WhatsApp Users"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "a31ca989-7219-45f3-a93a-0e4075abb456",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "d206a829-0527-4350-9c05-f9b5d6202241"
+                },
+                {
+                  "group": "right",
+                  "id": "fe7c6115-d073-45ad-b3e7-91b3c69993fa"
+                },
+                {
+                  "group": "bottom",
+                  "id": "2c02facb-726e-4b8d-b5fd-899dc19e7406"
+                },
+                {
+                  "group": "left",
+                  "id": "e0d47fe7-3ca7-4a86-be86-fa9aa7ddaadc"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "WhatsApp Users",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 280
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Webhook Sources"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "7b1126df-dc0e-45e1-9a24-34014893a12a",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "507fd01f-112e-41dd-be88-011147842999"
+                },
+                {
+                  "group": "right",
+                  "id": "a9cfd782-addd-4a31-a7c4-cdb43649d609"
+                },
+                {
+                  "group": "bottom",
+                  "id": "983f4210-5be9-4ba4-b2b6-ed3056a72091"
+                },
+                {
+                  "group": "left",
+                  "id": "1d7fa583-3b16-4564-b28e-9042e6c5d543"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Webhook Sources",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 20,
+              "y": 560
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Web APIs"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "c7f428a9-8f12-43b4-bc45-22d08f3956d5",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "cfb01b7d-5948-4f1c-8626-d8b55bc3ddd7"
+                },
+                {
+                  "group": "right",
+                  "id": "b17e4ffb-2611-4c14-b173-4fa8cde1f3ce"
+                },
+                {
+                  "group": "bottom",
+                  "id": "2dc9a0cc-f561-4047-b0ad-2f84ad193999"
+                },
+                {
+                  "group": "left",
+                  "id": "c9205aca-ccc5-4e8a-8c31-ececd818a012"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Web APIs",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 210,
+              "y": 120
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Owner iMessage"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "3eab06cc-2244-40f3-a324-94c38e2962d3",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "a4685c3d-111f-4f14-b671-1126bbbe0734"
+                },
+                {
+                  "group": "right",
+                  "id": "6bc8cb61-d777-4e96-83b6-6cb6e3e546a9"
+                },
+                {
+                  "group": "bottom",
+                  "id": "df8b0fa6-040a-44c0-a7b4-b5c54c087cd6"
+                },
+                {
+                  "group": "left",
+                  "id": "dcdccf42-26a3-48eb-afc5-4c3421c7b0b7"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Owner iMessage",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 210,
+              "y": 220
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Family iMessage"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "bc978082-3f6a-4800-a92f-16ebb3089dee",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "7d65ef56-b071-48ae-956c-ec5fd9f6bfca"
+                },
+                {
+                  "group": "right",
+                  "id": "a2902dd7-e942-499b-ac09-4b31232c0a4f"
+                },
+                {
+                  "group": "bottom",
+                  "id": "505a1748-6954-4439-aa0a-eb9b2b623345"
+                },
+                {
+                  "group": "left",
+                  "id": "f4900e43-34b7-4ce9-9874-9061c3759cfc"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Family iMessage",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 210,
+              "y": 330
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "BlueBubbles"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "actor",
+            "id": "8a7ec98a-449a-4a3c-a12a-257fa21de6a9",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "30075276-e437-41da-a4c7-44009f46a09c"
+                },
+                {
+                  "group": "right",
+                  "id": "5ddf449b-1261-4f68-a2ba-270f7c6db87f"
+                },
+                {
+                  "group": "bottom",
+                  "id": "62a0821e-124c-4662-be28-3f2c78b685ce"
+                },
+                {
+                  "group": "left",
+                  "id": "a9f45590-e41f-4a20-a9fd-25b38690c73b"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "BlueBubbles",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "providesAuthentication": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 460,
+              "y": 200
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "OpenClaw\nGateway"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "5bdedf44-3ff9-4d81-99db-feef0b181da9",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "5e402fc2-fbf2-45f1-b10a-e302b82010f5"
+                },
+                {
+                  "group": "right",
+                  "id": "ba4b8c64-c1e7-4d34-8084-dc30713c121a"
+                },
+                {
+                  "group": "bottom",
+                  "id": "55ed8f83-cc2c-448c-a5e9-e14bf1f608e7"
+                },
+                {
+                  "group": "left",
+                  "id": "e6786f47-228f-461b-a572-e9cb348a8cad"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "OpenClaw\nGateway",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 600,
+              "y": 80
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Main\nAgent"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "d8123b16-3127-47f5-a9c0-a9cfc9051e40",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "0f077d88-901a-4d1f-89a8-9f81638824c9"
+                },
+                {
+                  "group": "right",
+                  "id": "1d9e553a-57c2-4edc-98a5-2c7f98a891a0"
+                },
+                {
+                  "group": "bottom",
+                  "id": "06a0c3c1-19f3-4c8f-9491-b38b50cd02ca"
+                },
+                {
+                  "group": "left",
+                  "id": "3c03a694-7341-42b9-8480-c1e9f23dc055"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Main\nAgent",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 620,
+              "y": 190
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Group\nAgent"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "9e325cd1-ebab-46a5-b026-098bbb9c4820",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "becc997f-eb5e-41cc-a09b-7dbef96236e9"
+                },
+                {
+                  "group": "right",
+                  "id": "32298168-69fa-4c42-b81d-ede6a0421fc9"
+                },
+                {
+                  "group": "bottom",
+                  "id": "fb94199c-b159-48cd-9187-0de013b53e14"
+                },
+                {
+                  "group": "left",
+                  "id": "649b0654-c58e-4bf4-a9eb-d6877aac671f"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Group\nAgent",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 620,
+              "y": 290
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Family\nAgent"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "be94f836-4d45-4dc4-89e7-02c1a06daf8a",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "59df3b48-7f39-455e-9b79-673f0a2a4933"
+                },
+                {
+                  "group": "right",
+                  "id": "e842b412-17f4-47a5-890f-5c46fccd0590"
+                },
+                {
+                  "group": "bottom",
+                  "id": "66686c3b-e521-4b34-9b3e-b63c72c3283a"
+                },
+                {
+                  "group": "left",
+                  "id": "dfd93e15-5a64-403d-bad9-a671db2aa32a"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Family\nAgent",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 620,
+              "y": 370
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "WhatsApp\nAgent"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "be6ba321-90e4-408c-a567-ad4aa006773d",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "497de409-160e-4426-a5df-9e3edcca1706"
+                },
+                {
+                  "group": "right",
+                  "id": "c07a2557-f841-415b-adcc-0dea25116a75"
+                },
+                {
+                  "group": "bottom",
+                  "id": "6753cb60-e552-4946-b332-6d9401c06e66"
+                },
+                {
+                  "group": "left",
+                  "id": "894ab621-5bd0-4465-abc2-749cc34c41fe"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "WhatsApp\nAgent",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 810,
+              "y": 190
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "HomeClaw"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "5aa97c6a-3d04-42a9-9032-8d2b0b53f0bb",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "ac41b144-4e98-4be3-a0be-d571e69acadf"
+                },
+                {
+                  "group": "right",
+                  "id": "b631b834-2e12-4149-86a9-dea09f1669fc"
+                },
+                {
+                  "group": "bottom",
+                  "id": "981de6aa-fdcf-420f-a389-3afbe2e2ea69"
+                },
+                {
+                  "group": "left",
+                  "id": "13593035-3fe9-4fb1-99c0-b01f6659888c"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "HomeClaw",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 810,
+              "y": 290
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Travel\nHub"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "08903176-6a4e-4485-95c7-4f7995378d32",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "85f287a5-4f90-416f-95e7-29e049167fea"
+                },
+                {
+                  "group": "right",
+                  "id": "0061c666-f710-4883-9e68-9e1d704150bd"
+                },
+                {
+                  "group": "bottom",
+                  "id": "5972be9c-d594-4e1d-956b-37ec8b9ad33f"
+                },
+                {
+                  "group": "left",
+                  "id": "4a683ea4-f5b7-4ea4-a3d2-50b6ad604558"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Travel\nHub",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 600,
+              "y": 530
+            },
+            "size": {
+              "width": 100,
+              "height": 100
+            },
+            "attrs": {
+              "text": {
+                "text": "Exec\nEngine"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "process",
+            "id": "91f28b34-c757-4fcd-9971-3f83a4664b2b",
+            "zIndex": 2,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "3e9c118b-13c6-4643-8f5a-abe54597eb3c"
+                },
+                {
+                  "group": "right",
+                  "id": "5ae5918a-420f-48c2-9363-2849fb776139"
+                },
+                {
+                  "group": "bottom",
+                  "id": "3094c910-fa1f-4c83-a36f-fb46468bacf0"
+                },
+                {
+                  "group": "left",
+                  "id": "7cef7352-5354-4512-9033-370d065d71a7"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Exec\nEngine",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "handlesCardPayment": false,
+              "handlesGoodsOrServices": false,
+              "isWebApplication": false,
+              "privilegeLevel": "",
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 470
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Config / Secrets"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "cd605d9c-6cd2-4949-ad55-cc70409d691c",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "5596ccbb-b2bb-4b3e-88be-9a09f1c67de3"
+                },
+                {
+                  "group": "right",
+                  "id": "8250454f-ed5f-49b5-b31a-78ae6497901e"
+                },
+                {
+                  "group": "bottom",
+                  "id": "74695772-fd55-4299-a127-0cace5280a32"
+                },
+                {
+                  "group": "left",
+                  "id": "a592dc55-cf4a-49cc-bdd2-75836b6a3e98"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Config / Secrets",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 560,
+              "y": 470
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Apple PIM"
+              },
+              "topLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "d88d6029-31d8-4c9e-a070-bcfcf0438885",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "1d0f8e83-8d62-48f5-a854-92cf76c15ea1"
+                },
+                {
+                  "group": "right",
+                  "id": "533294f9-d2a5-4082-8bf9-f7c7729b0835"
+                },
+                {
+                  "group": "bottom",
+                  "id": "1b2b7850-a463-4960-9ec3-bc6e2d3d9d8b"
+                },
+                {
+                  "group": "left",
+                  "id": "1313586d-9556-46b7-b27f-44fc97f0903c"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Apple PIM",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 730,
+              "y": 470
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Fastmail Email"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "077e1385-19f1-4307-930d-d0d034bc9365",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "52cfc367-a230-4d0f-a378-3e195f3359a2"
+                },
+                {
+                  "group": "right",
+                  "id": "f8ae27fd-abc7-4eb8-89f9-6df90dd9fa79"
+                },
+                {
+                  "group": "bottom",
+                  "id": "7302d818-caf1-4b4e-8cf7-4d1c6eb6c69e"
+                },
+                {
+                  "group": "left",
+                  "id": "32a6e525-cc80-4529-9c66-4597b531ee0b"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Fastmail Email",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 470
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Agent Memory"
+              },
+              "topLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "64c40b4b-2b03-49d6-9c40-2a8135f5ae2a",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "bed8b652-3b28-4fd0-9082-a8959b6d6f59"
+                },
+                {
+                  "group": "right",
+                  "id": "461b6763-0d91-42bd-b335-98caf91cf76a"
+                },
+                {
+                  "group": "bottom",
+                  "id": "03264d0f-b4a4-4560-86c8-72fdaebf7999"
+                },
+                {
+                  "group": "left",
+                  "id": "512840f1-6267-40f5-90a7-3ed51baecff3"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Agent Memory",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 900,
+              "y": 570
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Audit Logs"
+              },
+              "topLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "87bc8fd5-068c-4600-89b4-ff49af0695a6",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "64d328fe-cadd-4361-b1be-c223f4da0a83"
+                },
+                {
+                  "group": "right",
+                  "id": "1b04580d-56fc-48af-96fc-1badd17032d4"
+                },
+                {
+                  "group": "bottom",
+                  "id": "9e0ade2c-50d3-448e-86b4-a0a7abe99a4f"
+                },
+                {
+                  "group": "left",
+                  "id": "c16959aa-38a9-46b0-921a-75e44215394b"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Audit Logs",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "position": {
+              "x": 380,
+              "y": 570
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Host Filesystem"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": null
+              }
+            },
+            "visible": true,
+            "shape": "store",
+            "id": "8aa4c588-485b-44ad-a20f-0e49024ac092",
+            "zIndex": 1,
+            "ports": {
+              "groups": {
+                "top": {
+                  "position": "top",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "right": {
+                  "position": "right",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "bottom": {
+                  "position": "bottom",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                },
+                "left": {
+                  "position": "left",
+                  "attrs": {
+                    "circle": {
+                      "r": 4,
+                      "magnet": true,
+                      "stroke": "#5F95FF",
+                      "strokeWidth": 1,
+                      "fill": "#fff",
+                      "style": {
+                        "visibility": "hidden"
+                      }
+                    }
+                  }
+                }
+              },
+              "items": [
+                {
+                  "group": "top",
+                  "id": "4efcf65a-11ad-4d94-be50-e6769f965132"
+                },
+                {
+                  "group": "right",
+                  "id": "6f56418a-ef4a-44e0-973a-f4d4d6399337"
+                },
+                {
+                  "group": "bottom",
+                  "id": "529fe189-7604-43a6-bead-d50b64984c49"
+                },
+                {
+                  "group": "left",
+                  "id": "334f443f-e1b2-49d9-97d4-c65eb6a5bd3e"
+                }
+              ]
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Host Filesystem",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isALog": false,
+              "isEncrypted": false,
+              "isSigned": false,
+              "storesCredentials": false,
+              "storesInventory": false,
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "7ae27f39-83ee-40cc-81a4-fcfbfb2dccf9",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "8a7ec98a-449a-4a3c-a12a-257fa21de6a9"
+            },
+            "target": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "iMessage via BlueBubbles",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "iMessage via BlueBubbles",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "a45ab02b-a40e-4252-89fa-eee1926583c9",
+                  "title": "Sender spoofing via BlueBubbles",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Spoofing",
+                  "description": "BlueBubbles reports phone numbers without cryptographic verification. Compromised API injects messages as owner, routing to main agent with full privileges.",
+                  "mitigation": "Bind BlueBubbles to localhost. Strong API password. Challenge-response verification.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "917df9aa-e9f4-4b10-b5b4-189c7c584362",
+                  "title": "BlueBubbles compromise chains to main agent",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Compromised BlueBubbles sends messages as owner, routing to main agent with full host access, exec, Fastmail.",
+                  "mitigation": "Out-of-band verification for high-impact commands. Anomaly detection for unusual patterns.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "96febb09-2117-4b3c-b626-881d004637c6",
+                  "title": "Message tampering in BlueBubbles bridge",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "HTTP API between iMessage and gateway modifiable without TLS enforcement.",
+                  "mitigation": "Bind to localhost. Tailscale encrypted transport.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "fddcfa8b-23a5-4502-b080-7bd354a90ec3",
+                  "title": "BlueBubbles crash halts all iMessage",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Single point of failure for entire iMessage channel.",
+                  "mitigation": "Health monitoring and self-healing scripts. No automatic failover exists.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "a84687b0-a7f9-444b-ac40-4a4b02bb85bb",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "d6319d3f-8e07-4f27-baf8-05a77129194b"
+            },
+            "target": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Email Inbound",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Email Inbound",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "447deb66-b15c-47e7-9049-8d253818b978",
+                  "title": "Prompt injection as owner instructions",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Spoofing",
+                  "description": "Email bodies containing injection payloads processed in LLM context. Main agent has full exec and Fastmail access to comply.",
+                  "mitigation": "Deterministic content filtering before LLM. Mandatory human-in-the-loop for destructive actions.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "941dc18d-d860-4b38-83f8-dd4bc46ff445",
+                  "title": "Email prompt injection triggers privileged actions",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Crafted email triggers main agent with full Fastmail access to send, archive, forward, and create filters.",
+                  "mitigation": "Mandatory confirmation for all email-modifying actions. Sandboxed email body processing.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "5dca68bb-dd7f-40eb-b783-ac03b8ce08f5",
+                  "title": "Spoofed sender bypasses email triage",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Forged From headers bypass importance classification. DKIM/SPF/DMARC not automatically invoked.",
+                  "mitigation": "Auto-invoke mail-auth-check before processing. System prompt for unknown sender verification.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "92d58682-28d0-4f0f-b388-6dbdc9ffe04f",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "a31ca989-7219-45f3-a93a-0e4075abb456"
+            },
+            "target": {
+              "cell": "be6ba321-90e4-408c-a567-ad4aa006773d"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "WhatsApp Messages",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "WhatsApp Messages",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "94d881b6-5558-4278-9a2e-e6ca2ceba38a",
+                  "title": "File reads via exec utilities",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "cat, ls, grep in WhatsApp agent exec allowlist bypass workspace isolation for any world-readable file.",
+                  "mitigation": "Remove general utilities from allowlist. Purpose-built read-only tools.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "0a2352c6-3f38-47e5-b42d-bf9da5c7ef42",
+                  "title": "WA agent utilities enable arbitrary reads",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "WhatsApp exec allowlist includes cat ls grep head tail for arbitrary file access.",
+                  "mitigation": "chmod 600/700 on sensitive directories.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "267c1bc2-4032-45f6-9bb3-57a60b2e2792",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "7b1126df-dc0e-45e1-9a24-34014893a12a"
+            },
+            "target": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Webhook Events",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Webhook Events",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "227ec9be-eedc-4d62-b239-3f76fa3eac3c",
+                  "title": "allowUnsafeExternalContent disables injection defense",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Setting this flag removes the safety wrapper marking webhook payloads as untrusted data. Direct prompt injection.",
+                  "mitigation": "Audit all webhook mappings. Consider removing the flag entirely.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "2e1d90f3-e091-49a7-8716-ea5fdcf9d80f",
+                  "title": "Webhook source spoofing",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Spoofing",
+                  "description": "Weak or leaked tokens allow arbitrary event injection at webhook endpoints.",
+                  "mitigation": "Strong per-hook tokens. Token rotation.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "d8ee6fb4-456c-4831-a852-45810c655663",
+                  "title": "Webhook injection escalates to main agent",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "allowUnsafeExternalContent plus sessions_send chains webhook injection to full-privilege access.",
+                  "mitigation": "Default safety wrapper. Minimal webhook agent tools. Transform filtering.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "b7a57302-eb43-49fa-a31c-9cc5698d6f1e",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "target": {
+              "cell": "d8123b16-3127-47f5-a9c0-a9cfc9051e40"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Binding Routing",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Binding Routing",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "5a26c945-a7e6-481e-adab-264d0996f0d1",
+                  "title": "Default fallback grants maximum privileges",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Without explicit bindings, messages route to full-access main agent.",
+                  "mitigation": "Verify binding coverage for all channels. Invert-the-catch-all strategy.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "1ea8919e-7f1f-429d-b583-48ff10bde4ba",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "9e325cd1-ebab-46a5-b026-098bbb9c4820"
+            },
+            "target": {
+              "cell": "d8123b16-3127-47f5-a9c0-a9cfc9051e40"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "A2A sessions_send",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "A2A sessions_send",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "fbbee133-c0c3-48c7-a17c-1e697f2cc2e6",
+                  "title": "A2A soft privilege escalation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Restricted agents send arbitrary requests to main agent via sessions_send. LLM may comply despite privacy rules.",
+                  "mitigation": "Content filtering on A2A messages. Rate limiting. Log and alert on sensitive data requests.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "21b10e5d-6079-4d75-9175-fb0d09e1d1f7",
+                  "title": "Main agent leaks private data via A2A",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Restricted agent asks for private email. Main agent may comply despite TOOLS.md privacy instructions.",
+                  "mitigation": "TOOLS.md privacy rules (soft). Technical filtering on A2A response content.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "b7c219fe-cc01-4d97-8d1c-2b0b9604b0dc",
+                  "title": "Private email via A2A escalation",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Restricted agents ask main agent to read or forward emails via sessions_send.",
+                  "mitigation": "No technical enforcement on response content. Provenance tagging only.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "3c7542c7-4430-4300-b31b-9b5b5097ad39",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "d8123b16-3127-47f5-a9c0-a9cfc9051e40"
+            },
+            "target": {
+              "cell": "91f28b34-c757-4fcd-9971-3f83a4664b2b"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Exec Invocation",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Exec Invocation",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "6ac38540-ef79-4872-ab58-31237bbc2132",
+                  "title": "Gateway config self-modification",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "If write/edit tools not denied, main agent can modify openclaw.json to escalate its own privileges.",
+                  "mitigation": "Verify write/edit/apply_patch denied for ALL agents. Filesystem immutability on config files.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "bdd386ed-d164-4ad8-88ea-c8c2e61bd09d",
+                  "title": "Exec argument injection",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "Allowlist patterns match paths not arguments. Shell metacharacters could chain unauthorized commands.",
+                  "mitigation": "Argument validation at exec engine level. Enforce shell=false. AppArmor profiles per CLI tool.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "db7a58b9-fc9b-466d-b86f-c901200ff432",
+                  "title": "Full filesystem read enables exfiltration",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "Main agent fs.workspaceOnly: false grants read to entire macOS filesystem as AGENT_USER.",
+                  "mitigation": "Set fs.workspaceOnly: true. Grant specific directory access.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "b021cb1c-490a-4d4a-89b5-d5af34e51186",
+                  "title": "Main agent compromise = full host compromise",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Elevation of privilege",
+                  "description": "Maximum privilege agent. Any successful attack yields full host access, email, calendars, shell execution.",
+                  "mitigation": "Fundamental architectural risk. Reduce privileges where possible. Enhanced monitoring.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "bc747532-e4ee-4c4d-8dbc-e6d701f6030b",
+                  "title": "Symlink traversal bypasses exec allowlist",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Wildcards in allowlist may be bypassed via symlinks or path traversal.",
+                  "mitigation": "Verify exec engine resolves symlinks. Add realpath() validation.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "a4c0289e-f09c-4283-90b7-bf7b0c5c5893",
+                  "title": "Agent self-modification risk",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Architecture doc shows write/edit in alsoAllow. If deployed, agent can rewrite own prompts and skills.",
+                  "mitigation": "Verify actual deployed config matches hardening guide.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "b6cc0951-ff08-40a3-9875-ba5201bde62f",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "target": {
+              "cell": "cd605d9c-6cd2-4949-ad55-cc70409d691c"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Config Read",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Config Read",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "9a00ff98-0dd0-4a56-8691-4e344c18f810",
+                  "title": "Dual config security drift",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Tampering",
+                  "description": "openclaw.json and exec-approvals.json must both be correct. Changes to one silently degrade security.",
+                  "mitigation": "Automated consistency validation. Startup checks. Alert on drift.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "c423a4dc-f647-49a7-a15c-f37a195f1b36",
+                  "title": "Shared API keys across all agents",
+                  "status": "Open",
+                  "severity": "Critical",
+                  "type": "Information disclosure",
+                  "description": "All six agents share same API key. Compromise of any agent workspace yields all credentials.",
+                  "mitigation": "Per-agent API key isolation. Separate keys per agent tier.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "15c18424-cf0f-4be1-bfce-b0fbab65d16b",
+                  "title": "jq resets file permissions",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Tampering",
+                  "description": "Config edits via jq write to /tmp then mv, resetting chmod. Files world-readable until manually fixed.",
+                  "mitigation": "Wrapper script restoring chmod 600 after jq. inotify monitoring.",
+                  "modelType": "STRIDE"
+                },
+                {
+                  "id": "263e3ce2-aff4-4fa9-8546-e61d669dba97",
+                  "title": "Gateway crash stops all agents",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Denial of service",
+                  "description": "Single gateway process hosts all six agents. Crash stops all channels simultaneously.",
+                  "mitigation": "launchd process supervision with automatic restart. Health check endpoints.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "a4844b84-95af-4abd-ad3c-b2a33895ba07",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "d8123b16-3127-47f5-a9c0-a9cfc9051e40"
+            },
+            "target": {
+              "cell": "c7f428a9-8f12-43b4-bc45-22d08f3956d5"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Outbound Web",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Outbound Web",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "0ce32cd7-9d51-4a61-853c-82a8352ede25",
+                  "title": "Unrestricted outbound exfiltration",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Information disclosure",
+                  "description": "Agent makes arbitrary outbound connections. No egress filtering documented.",
+                  "mitigation": "Egress filtering with domain allowlisting. Monitoring proxy.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "0ee03652-89a8-4a1c-bc0b-59352f1965f5",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "3eab06cc-2244-40f3-a324-94c38e2962d3"
+            },
+            "target": {
+              "cell": "9e325cd1-ebab-46a5-b026-098bbb9c4820"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Elevated Access",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Elevated Access",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": true,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": [
+                {
+                  "id": "04efca43-a0c6-421c-917b-e836601d62e3",
+                  "title": "Owner mention in group elevates restricted agent",
+                  "status": "Open",
+                  "severity": "High",
+                  "type": "Elevation of privilege",
+                  "description": "Group participants can manipulate conversation context before owner @mention triggers elevation.",
+                  "mitigation": "Remove elevation from group chats. Require DM confirmation.",
+                  "modelType": "STRIDE"
+                }
+              ]
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "d04e72dd-aed3-475b-b910-b3b96ddb04ff",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "91f28b34-c757-4fcd-9971-3f83a4664b2b"
+            },
+            "target": {
+              "cell": "d88d6029-31d8-4c9e-a070-bcfcf0438885"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Apple PIM Access",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Apple PIM Access",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          },
+          {
+            "shape": "flow",
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "sourceMarker": {
+                  "name": ""
+                },
+                "strokeDasharray": null
+              }
+            },
+            "id": "2e377394-0948-41d5-a6ca-a87a86f2dcf8",
+            "zIndex": 10,
+            "visible": true,
+            "source": {
+              "cell": "5bdedf44-3ff9-4d81-99db-feef0b181da9"
+            },
+            "target": {
+              "cell": "87bc8fd5-068c-4600-89b4-ff49af0695a6"
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "Audit Log Write",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": {
+                  "distance": 0.5,
+                  "args": {
+                    "keepGradient": true,
+                    "ensureLegibility": true
+                  }
+                }
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "Audit Log Write",
+              "description": "",
+              "outOfScope": false,
+              "reasonOutOfScope": "",
+              "hasOpenThreats": false,
+              "isBidirectional": false,
+              "isEncrypted": false,
+              "isPublicNetwork": false,
+              "protocol": "",
+              "threats": []
+            }
+          }
+        ]
+      }
+    ],
+    "diagramTop": 0,
+    "reviewer": "",
+    "threatTop": 0
+  }
+}
