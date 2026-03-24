@@ -141,6 +141,10 @@ h3 { font-size: 15px; font-weight: 500; margin: 16px 0 8px; color: var(--text2);
 .mit-partial { color: var(--amber); }
 .mit-implemented { color: var(--green); }
 .mit-none { color: var(--red); }
+.dfd-tooltip { position: absolute; pointer-events: none; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; font-size: 12px; line-height: 1.5; max-width: 320px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 100; white-space: normal; }
+.dfd-tooltip .tt-title { font-weight: 600; font-size: 13px; margin-bottom: 4px; }
+.dfd-tooltip .tt-row { display: flex; gap: 6px; align-items: center; }
+.dfd-tooltip .tt-count { font-weight: 600; min-width: 18px; text-align: right; }
 @media print { .controls { display: none; } .table-wrap { max-height: none; overflow: visible; } }
 </style>
 </head>
@@ -151,8 +155,8 @@ h3 { font-size: 15px; font-weight: 500; margin: 16px 0 8px; color: var(--text2);
 <button id="theme-toggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:20px;padding:4px 8px;border-radius:6px;color:var(--text2);transition:background 0.15s;" title="Toggle light/dark theme">☀️</button>
 </div>
 <p class="subtitle">Data flow diagram with trust boundaries and 46 enumerated threats across 11 components. Generated from architecture at <a href="https://lobster.shahine.com" style="color:var(--blue);text-decoration:none;font-weight:500;">lobster.shahine.com</a>.</p>
-<p style="font-size:14px;font-weight:500;color:var(--blue);margin-bottom:6px;">Click any element in the diagram below to filter the threat table.</p>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+<p style="font-size:14px;font-weight:500;color:var(--blue);margin-bottom:6px;text-align:center;">Click any element in the diagram below to filter the threat table.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;justify-content:center;">
 <a href="https://www.johnholliday.net/when-your-ai-becomes-chief-of-staff-a-stride-threat-analysis-of-the-lobster-openclaw-personal-ai-agent-system" class="btn" style="text-decoration:none;color:var(--blue);border-color:var(--blue);">Read the full article</a>
 <a href="lobster-threat-assessment.docx" download class="btn" style="text-decoration:none;color:var(--teal);border-color:var(--teal);">Download threat assessment</a>
 <a href="lobster-threat-model.json" download class="btn" style="text-decoration:none;color:var(--purple);border-color:var(--purple);">Download Threat Dragon JSON</a>
@@ -660,6 +664,56 @@ function toggleTheme() {
 }
 
 applyTheme(getPreferredTheme());
+
+// DFD hover tooltips
+const tooltip = document.createElement('div');
+tooltip.className = 'dfd-tooltip';
+tooltip.style.display = 'none';
+document.body.appendChild(tooltip);
+
+const catNames = {S:'Spoofing',T:'Tampering',R:'Repudiation',I:'Info disclosure',D:'Denial of service',E:'Elevation'};
+const sevColors = {critical:'var(--red)',high:'var(--coral)',medium:'var(--amber)',low:'var(--green)'};
+
+function buildTooltip(comp) {
+  const ct = threats.filter(t => t.comp === comp);
+  if (!ct.length) return null;
+  const sevCounts = {};
+  ct.forEach(t => { sevCounts[t.sev] = (sevCounts[t.sev] || 0) + 1; });
+  const cats = [...new Set(ct.map(t => t.cat))].map(c => catNames[c]).join(', ');
+  const none = ct.filter(t => t.status === 'none').length;
+
+  let html = '<div class="tt-title">' + comp + ' — ' + ct.length + ' threat' + (ct.length > 1 ? 's' : '') + '</div>';
+  html += '<div style="margin-bottom:4px;">';
+  for (const sev of ['critical','high','medium','low']) {
+    if (sevCounts[sev]) {
+      html += '<div class="tt-row"><span class="tt-count" style="color:' + sevColors[sev] + '">' + sevCounts[sev] + '</span> <span>' + sev + '</span></div>';
+    }
+  }
+  html += '</div>';
+  html += '<div style="color:var(--text2);font-size:11px;">' + cats + '</div>';
+  if (none > 0) html += '<div style="color:var(--red);font-size:11px;margin-top:2px;">' + none + ' unmitigated</div>';
+  return html;
+}
+
+document.querySelectorAll('.ee, .proc, .ds').forEach(el => {
+  const comp = el.getAttribute('data-id');
+  el.addEventListener('mouseenter', e => {
+    const html = buildTooltip(comp);
+    if (!html) return;
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+  });
+  el.addEventListener('mousemove', e => {
+    if (tooltip.style.display === 'none') return;
+    const x = e.pageX + 12;
+    const y = e.pageY + 12;
+    tooltip.style.left = Math.min(x, window.innerWidth - 340) + 'px';
+    tooltip.style.top = y + 'px';
+  });
+  el.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+});
 </script>
 </body>
 </html>
