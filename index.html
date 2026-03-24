@@ -35,6 +35,34 @@
     --gray: #B4B2A9; --gray-bg: #2C2C2A; --gray-l: #444441;
   }
 }
+[data-theme="dark"] {
+    --bg: #1a1a18; --bg2: #2c2c2a; --bg3: #3d3d3a;
+    --text: #e8e6dc; --text2: #b4b2a9; --text3: #888780;
+    --border: rgba(255,255,255,0.12); --border2: rgba(255,255,255,0.06);
+    --blue: #85B7EB; --blue-bg: #0C447C; --blue-l: #185FA5;
+    --red: #F09595; --red-bg: #501313; --red-l: #791F1F;
+    --amber: #FAC775; --amber-bg: #412402; --amber-l: #633806;
+    --green: #C0DD97; --green-bg: #173404; --green-l: #27500A;
+    --purple: #AFA9EC; --purple-bg: #26215C; --purple-l: #3C3489;
+    --teal: #9FE1CB; --teal-bg: #04342C; --teal-l: #085041;
+    --coral: #F0997B; --coral-bg: #4A1B0C; --coral-l: #712B13;
+    --pink: #ED93B1; --pink-bg: #4B1528; --pink-l: #72243E;
+    --gray: #B4B2A9; --gray-bg: #2C2C2A; --gray-l: #444441;
+}
+[data-theme="light"] {
+    --bg: #fafaf8; --bg2: #f0efe8; --bg3: #e6e5dd;
+    --text: #1a1a18; --text2: #5f5e5a; --text3: #888780;
+    --border: rgba(0,0,0,0.12); --border2: rgba(0,0,0,0.06);
+    --blue: #185FA5; --blue-bg: #E6F1FB; --blue-l: #B5D4F4;
+    --red: #A32D2D; --red-bg: #FCEBEB; --red-l: #F7C1C1;
+    --amber: #854F0B; --amber-bg: #FAEEDA; --amber-l: #FAC775;
+    --green: #3B6D11; --green-bg: #EAF3DE; --green-l: #C0DD97;
+    --purple: #534AB7; --purple-bg: #EEEDFE; --purple-l: #CECBF6;
+    --teal: #0F6E56; --teal-bg: #E1F5EE; --teal-l: #9FE1CB;
+    --coral: #993C1D; --coral-bg: #FAECE7; --coral-l: #F5C4B3;
+    --pink: #993556; --pink-bg: #FBEAF0; --pink-l: #F4C0D1;
+    --gray: #5F5E5A; --gray-bg: #F1EFE8; --gray-l: #D3D1C7;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
@@ -118,10 +146,17 @@ h3 { font-size: 15px; font-weight: 500; margin: 16px 0 8px; color: var(--text2);
 </head>
 <body>
 <div class="container">
+<div style="display:flex;justify-content:space-between;align-items:center;">
 <h1>Lobster / OpenClaw — STRIDE threat model</h1>
-<p class="subtitle">Data flow diagram with trust boundaries and 46 enumerated threats across 11 components. Generated from architecture at lobster.shahine.com.</p>
+<button id="theme-toggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:20px;padding:4px 8px;border-radius:6px;color:var(--text2);transition:background 0.15s;" title="Toggle light/dark theme">☀️</button>
+</div>
+<p class="subtitle">Data flow diagram with trust boundaries and 46 enumerated threats across 11 components. Generated from architecture at <a href="https://lobster.shahine.com" style="color:var(--blue);text-decoration:none;font-weight:500;">lobster.shahine.com</a>.</p>
 <p style="font-size:14px;font-weight:500;color:var(--blue);margin-bottom:6px;">Click any element in the diagram below to filter the threat table.</p>
-<p style="font-size:13px;margin-bottom:16px;"><a href="https://www.johnholliday.net/when-your-ai-becomes-chief-of-staff-a-stride-threat-analysis-of-the-lobster-openclaw-personal-ai-agent-system" style="color:var(--blue);text-decoration:none;font-weight:500;">Read the full article →</a></p>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+<a href="https://www.johnholliday.net/when-your-ai-becomes-chief-of-staff-a-stride-threat-analysis-of-the-lobster-openclaw-personal-ai-agent-system" class="btn" style="text-decoration:none;color:var(--blue);border-color:var(--blue);">Read the full article</a>
+<a href="lobster-threat-assessment.docx" download class="btn" style="text-decoration:none;color:var(--teal);border-color:var(--teal);">Download threat assessment</a>
+<a href="lobster-threat-model.json" download class="btn" style="text-decoration:none;color:var(--purple);border-color:var(--purple);">Download Threat Dragon JSON</a>
+</div>
 
 <div class="dfd-wrap">
 <svg width="100%" viewBox="0 0 1100 680" xmlns="http://www.w3.org/2000/svg">
@@ -604,6 +639,27 @@ function renderBoundarySummary() {
 
 renderTable();
 renderBoundarySummary();
+
+// Theme toggle
+function getPreferredTheme() {
+  const stored = localStorage.getItem('theme');
+  if (stored) return stored;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('theme-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || getPreferredTheme();
+  const next = current === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('theme', next);
+  applyTheme(next);
+}
+
+applyTheme(getPreferredTheme());
 </script>
 </body>
 </html>
