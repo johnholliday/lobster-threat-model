@@ -63,8 +63,19 @@
     --pink: #993556; --pink-bg: #FBEAF0; --pink-l: #F4C0D1;
     --gray: #5F5E5A; --gray-bg: #F1EFE8; --gray-l: #D3D1C7;
 }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Noto+Serif:wght@400;500;600&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding-top: 72px; padding-bottom: 60px; }
+.site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 200; background: var(--bg); border-bottom: 1px solid var(--border2); padding: 0 24px; height: 72px; display: flex; align-items: center; justify-content: center; }
+.site-header-inner { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; }
+.site-header a.logo img { height: 38px; display: block; }
+.site-header nav { display: flex; align-items: center; gap: 24px; }
+.site-header nav a { font-size: 13px; font-weight: 500; color: var(--text2); text-decoration: none; transition: color 0.15s; }
+.site-header nav a:hover { color: var(--text); }
+.site-footer { position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: var(--bg); border-top: 1px solid var(--border2); padding: 12px 24px; text-align: center; }
+.site-footer p { font-size: 12px; color: var(--text3); }
+.site-footer a { color: var(--text2); text-decoration: none; margin: 0 8px; }
+.site-footer a:hover { color: var(--text); }
 .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
 h1 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
 h2 { font-size: 18px; font-weight: 500; margin: 32px 0 12px; }
@@ -149,11 +160,20 @@ h3 { font-size: 15px; font-weight: 500; margin: 16px 0 8px; color: var(--text2);
 </style>
 </head>
 <body>
-<div class="container">
-<div style="display:flex;justify-content:space-between;align-items:center;">
-<h1>Lobster / OpenClaw — STRIDE threat model</h1>
-<button id="theme-toggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:20px;padding:4px 8px;border-radius:6px;color:var(--text2);transition:background 0.15s;" title="Toggle light/dark theme">☀️</button>
+<header class="site-header">
+<div class="site-header-inner">
+  <a class="logo" href="https://www.johnholliday.net"><img src="https://www.johnholliday.net/content/images/2025/12/JFH-GhostBanner-2.png" alt="John F. Holliday"></a>
+  <nav>
+    <a href="https://www.johnholliday.net">Home</a>
+    <a href="https://www.johnholliday.net/about/">About</a>
+    <a href="https://www.johnholliday.net/contact-me/">Contact</a>
+    <a href="https://www.johnholliday.net/new-book-truth-alone-triumphs/">Books</a>
+    <button id="theme-toggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:18px;padding:2px 6px;border-radius:6px;color:var(--text2);transition:background 0.15s;" title="Toggle light/dark theme">☀️</button>
+  </nav>
 </div>
+</header>
+<div class="container">
+<h1>Lobster / OpenClaw — STRIDE threat model</h1>
 <p class="subtitle">Data flow diagram with trust boundaries and 46 enumerated threats across 11 components. Generated from architecture at <a href="https://lobster.shahine.com" style="color:var(--blue);text-decoration:none;font-weight:500;">lobster.shahine.com</a>.</p>
 <p style="font-size:14px;font-weight:500;color:var(--blue);margin-bottom:6px;text-align:center;">Click any element in the diagram below to filter the threat table.</p>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;justify-content:center;">
@@ -715,5 +735,14 @@ document.querySelectorAll('.ee, .proc, .ds').forEach(el => {
   });
 });
 </script>
+<footer class="site-footer">
+  <p>Consciousness + Content + Code</p>
+  <p style="margin-top:4px;">
+    <a href="https://instagram.com/jholliday108">Instagram</a>
+    <a href="https://linkedin.com/in/holliday">LinkedIn</a>
+    <a href="https://facebook.com/johnfholliday">Facebook</a>
+    <span style="margin-left:8px;">Copyright &copy; 2025 John F. Holliday</span>
+  </p>
+</footer>
 </body>
 </html>
